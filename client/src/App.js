@@ -4,7 +4,7 @@ import Chart from "./components/Chart2";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Read from "./components/Read";
-
+import Fetch from "./components/Fetch";
 
 
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
     const [data, setData] = useState();
   
     let result = [];
+ 
    
     useEffect(() => {
          
@@ -21,6 +22,7 @@ export default function App() {
             const tab = data.response.entities
             setData(result);
             console.log(data)
+            
     
             const counts = {};
             tab.forEach(obj => {
@@ -34,9 +36,14 @@ export default function App() {
                     entityId: entityId, count: counts[entityId]  
                 });
 
-               console.log(result);
-             
+               
             } 
+            console.log(tab);
+            // const typeData = tab.map(person => `Word: ${entityId}, Type: ${type}`);
+           
+            
+
+            
         }
 
         fetchData();
@@ -48,11 +55,10 @@ export default function App() {
         <div className="bg-gray-100">
             <Navbar />
             <Download />
-            {/* <Read /> */}
-            
+ 
             <div>
                 <h1 className="ml-4 mt-4 text-center text-gray-500">
-                Keywords in your text</h1>
+                Frekvence slov v textu</h1>
                
                 {/* <pre>{JSON.stringify(data, null, 4)}</pre>  */}
               
@@ -62,6 +68,7 @@ export default function App() {
                 {data ? <p>{result}</p> : <p>Loading...</p>}
                 <Chart data={data} />
             </div>
+            <Fetch />
 
             <Footer />
         </div>
